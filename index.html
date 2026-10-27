@@ -1,0 +1,110 @@
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Vocab Impostor: Hold Your Nose & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Space+Grotesk:wght@400;600;700&display=swap" rel=stylesheet>
+<style>
+:root{--bg:#1b1210;--card:#2a1c18;--line:#4a342d;--gold:#ffb627;--red:#e63e2e;--txt:#fff4e6;--mut:#c9ab98}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#4a1d14,transparent),radial-gradient(700px 500px at -10% 110%,#2f3a12,transparent),var(--bg);color:var(--txt);font:16px 'Space Grotesk',system-ui,sans-serif;min-height:100vh}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:.2em 0}h1{font-size:2.4rem;font-weight:900}h1 em{color:var(--gold)}h2{font-size:2rem}
+.wrap{max-width:1100px;margin:auto;padding:18px;animation:in .4s}.narrow{max-width:560px}@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.sub,.hint{color:var(--mut);margin:0}
+.code{font:900 3rem Fraunces;letter-spacing:.15em;background:var(--gold);color:#1b1210;padding:2px 18px;border-radius:14px;transform:rotate(-2deg)}.code.sm{font-size:1.3rem;padding:0 10px}
+.home{max-width:420px;margin:6vh auto;text-align:center;padding:18px;animation:in .5s}.logo{font-size:4rem;animation:bob 2s infinite}@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;text-align:left}.home .panel{display:grid;gap:10px}
+input,textarea,select{width:100%;background:#150d0b;color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}select{width:auto}
+input{font-size:1.2rem;text-transform:none}#jc{text-transform:uppercase;letter-spacing:.3em;text-align:center;font-weight:700}
+textarea{font:14px/1.5 ui-monospace,Menlo,monospace}code{background:#150d0b;padding:2px 6px;border-radius:6px;color:var(--gold)}
+.btn{background:var(--red);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:700;font-size:1rem;font-family:inherit;cursor:pointer;box-shadow:0 4px 0 #8f241a;transition:.12s}.btn:active{transform:translateY(3px);box-shadow:none}.btn.go{background:#4fae5b;box-shadow:0 4px 0 #2f7a39}
+.ghost{background:none;border:1px dashed var(--line);color:var(--mut);border-radius:12px;padding:10px 16px;cursor:pointer;font:inherit}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}.ctl label{color:var(--mut)}
+.lobby{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+.tc,.tm{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:14px;padding:12px}.tc small{color:var(--mut)}
+.pl{display:inline-block;background:#150d0b;border-radius:99px;padding:3px 12px;margin:3px;animation:in .3s}.pl.off{opacity:.4}
+.sb{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.tm{text-align:center;transition:.3s}.tm.on{transform:scale(1.05);box-shadow:0 0 0 2px var(--c),0 0 24px -4px var(--c)}
+.tm b{display:block}.pts{font:900 2.2rem Fraunces;color:var(--gold)}.tm small{color:var(--mut)}
+.stage{background:linear-gradient(160deg,#35231d,#241714);border:1px solid var(--line);border-radius:22px;padding:22px;text-align:center;min-height:260px;animation:in .4s}
+.lab{display:inline-block;background:var(--c);color:#1b1210;font-weight:700;border-radius:99px;padding:3px 16px;margin-bottom:8px}.lab2{color:var(--gold);font-weight:700;margin:0}
+.spk{font-size:3rem;color:var(--gold);animation:pop .4s}@keyframes pop{from{transform:scale(.7);opacity:0}}
+.bar{height:10px;background:#150d0b;border-radius:9px;overflow:hidden;margin:14px auto 4px;max-width:420px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red));width:100%;transition:width .25s linear}
+.big{font:900 3.4rem Fraunces}.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}.chips span{background:#150d0b;border-radius:99px;padding:4px 14px;color:var(--mut)}.chips .on{background:var(--gold);color:#1b1210;font-weight:700}
+.votes{display:grid;gap:10px;max-width:360px;margin:14px auto}
+.flip{perspective:800px;height:120px;margin:12px 0;cursor:pointer}.f{position:relative;height:100%;transition:.6s;transform-style:preserve-3d}.fl .f{transform:rotateY(180deg)}
+.f>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;font:900 2.2rem Fraunces;padding:8px}
+.front{background:repeating-linear-gradient(45deg,#b82e1f,#b82e1f 10px,#cf3826 10px,#cf3826 20px);font-size:1.2rem!important}.back{transform:rotateY(180deg);background:var(--gold);color:#1b1210}
+.res h2{margin-bottom:0}.res.win h2{color:#7be08a}.res.lose h2{color:#ff7a68}.words{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;text-align:left}
+.words>div{background:#150d0b;border-radius:14px;padding:12px;border-top:4px solid #4fae5b}.words .imp{border-color:var(--red)}.words small{color:var(--mut);display:block}.words b{font:900 1.6rem Fraunces;color:var(--gold)}.words p{margin:4px 0 0}
+.row{display:grid;grid-template-columns:50px 1fr auto;gap:4px 12px;align-items:center;background:var(--card);border-left:8px solid var(--c);border-radius:14px;padding:12px 16px;margin:10px 0;font-size:1.3rem;animation:in .5s both}.row small{grid-column:2;color:var(--mut);font-size:.85rem}
+.tb{background:var(--card);border:2px solid var(--c);color:var(--txt);border-radius:14px;padding:14px;font-weight:700;font-size:1.1rem;font-family:inherit;margin:5px;width:calc(50% - 10px);cursor:pointer}.tb.sel{background:var(--c);color:#1b1210}.tb small{display:block;font-weight:400}
+.peek{background:#150d0b;border:1px dashed var(--gold);border-radius:12px;padding:8px;margin-top:10px;color:var(--gold)}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1b1210;padding:10px 20px;border-radius:99px;font-weight:700;opacity:0;transition:.3s;pointer-events:none}#toast.s{opacity:1}
+@media(max-width:600px){h1{font-size:1.8rem}.sb{gap:6px}.pts{font-size:1.6rem}.spk{font-size:2.2rem}.words{grid-template-columns:1fr}}
+</style>
+<div id=app></div><div id=toast></div>
+<script>
+const EM=['🌶️','🥭','🌿','🍋'],TC=['#e63e2e','#ff9f1c','#4fae5b','#b5d334'];
+const $=s=>document.querySelector(s),R=$('#app'),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tok=localStorage.tok||(localStorage.tok=Math.random().toString(36).slice(2));
+let ws,S,role,hello,fl=false,lastN=0,draft=localStorage.words||'',sentW=0;
+const tx=o=>ws&&ws.readyState==1&&ws.send(JSON.stringify(o));
+function toast(m){const t=$('#toast');t.textContent=m;t.className='s';clearTimeout(t.h);t.h=setTimeout(()=>t.className='',2500)}
+function setHello(h){hello=h;localStorage.hello=JSON.stringify(h);role=h.t=='host'?'h':'p'}
+function conn(){ws=new WebSocket((location.protocol=='https:'?'wss://':'ws://')+location.host);
+ ws.onopen=()=>hello&&tx(hello);
+ ws.onmessage=e=>{const m=JSON.parse(e.data);
+  if(m.t=='s'){S=m;S.at=Date.now();draw()}
+  else if(m.t=='err'){toast(m.m);if(!S)localStorage.removeItem('hello')}
+  else if(m.t=='hosted')setHello({t:'host',code:m.code,key:m.key})};
+ ws.onclose=()=>setTimeout(conn,1500)}
+function home(){const q=new URLSearchParams(location.search).get('room')||'';
+ R.innerHTML=`<div class=home><div class=logo>🍜</div><h1>Vocab <em>Impostor</em></h1><p class=sub>Hold Your Nose &amp; Eat</p>
+ <div class=panel><input id=jc placeholder="ROOM CODE" maxlength=4 value="${esc(q)}"><input id=jn placeholder="Your name" maxlength=14><button class=btn onclick=join()>Join game</button></div>
+ <button class=ghost onclick=host()>Teacher: host a new game</button></div>`}
+function join(){const code=$('#jc').value.trim().toUpperCase(),name=$('#jn').value.trim();if(code.length<4||!name)return toast('Enter room code and name');
+ setHello({t:'join',code,name,token:tok});ws?tx(hello):conn()}
+function host(){setHello({t:'host'});ws?tx(hello):conn()}
+const me=()=>S.me?S.me.id:'';
+const tmh=`<div class=bar><i id=bar></i></div><div class=big id=tm></div>`;
+const sb=()=>`<div class=sb>${S.teams.map((t,i)=>`<div class="tm ${S.turn&&S.turn.team==i&&S.phase!='end'?'on':''}" style="--c:${TC[i]}"><b>${EM[i]} ${t.n}</b><span class=pts>${t.s}</span><small>${t.p.length} players</small></div>`).join('')}</div>`;
+const teamsHtml=()=>S.teams.map((t,i)=>`<div class=tc style="--c:${TC[i]}"><h3>${EM[i]} ${t.n} <small>${t.p.length}/5</small></h3>${t.p.map(p=>`<span class="pl ${p.on?'':'off'}">${esc(p.name)}</span>`).join('')||'<small>waiting…</small>'}</div>`).join('');
+function draw(){if(!S)return;if(S.turn&&S.turn.n!=lastN){lastN=S.turn.n;fl=false}role=='h'?hostDraw():playDraw()}
+function card(){return `<div class="flip ${fl?'fl':''}" onclick="fl=!fl;draw()"><div class=f><div class=front>TAP TO SEE<br>YOUR SECRET WORD</div><div class=back>${esc(S.word)}</div></div></div>`}
+function resHtml(){const r=S.turn.res;return `<div class="res ${r.ok?'win':'lose'}"><h2>${r.ok?'Impostor caught! +1 point':'The impostor escaped!'}</h2><p>The impostor was <b>${esc(r.imp)}</b></p>
+ <div class=words><div><small>TEAM WORD</small><b>${esc(r.a)}</b><p>${esc(r.da)}</p></div><div class=imp><small>IMPOSTOR WORD</small><b>${esc(r.b)}</b><p>${esc(r.db)}</p></div></div>
+ <div class=chips>${r.tally.map(x=>`<span>${esc(x[0])} ← ${x[1]} vote${x[1]>1?'s':''}</span>`).join('')||'<span>No votes</span>'}</div></div>`}
+function stage(){const t=S.turn,ph=S.phase;if(!t)return '';const nm=id=>esc((t.order.find(o=>o.id==id)||{}).name||'');let b='';
+ const head=`<div class=lab style="--c:${TC[t.team]}">${EM[t.team]} ${S.teams[t.team].n} team${t.sudden?' · SUDDEN DEATH':''}</div><br>`;
+ if(ph=='see')b=`<h2>Read your secret word</h2><p>${S.inTeam?'Tap the card. Do NOT show anyone!':'The team is reading their words…'}</p>${tmh}`;
+ else if(ph=='clue')b=`<p class=lab2>CLUE ROUND ${t.rd} / 2</p><h2 class=spk>${nm(t.sp)}</h2><p>gives a spoken clue — don’t say the word!</p>${tmh}${me()==t.sp?'<button class=btn onclick=tx({t:"done"})>I’m done ✓</button>':''}<div class=chips>${t.order.map(o=>`<span class="${o.id==t.sp?'on':''}">${esc(o.name)}</span>`).join('')}</div>`;
+ else if(ph=='disc')b=`<h2>Discuss in English!</h2><p>Whose clues don’t match? Find the impostor.</p>${tmh}`;
+ else if(ph=='vote'){b=`<h2>${t.revote?'Tie! Vote again':'Who is the impostor?'}</h2>${tmh}`;
+  if(S.inTeam&&!S.voted)b+=`<div class=votes>${(t.cand||t.order.map(o=>o.id)).filter(id=>id!=me()).map(id=>`<button class=btn onclick="tx({t:'vote',to:'${id}'})">${nm(id)}</button>`).join('')}</div>`;
+  else b+=`<p>${S.inTeam?'Vote locked ✓ waiting for teammates…':'Votes in: '+t.voted+'/'+t.order.length}</p>`}
+ else if(ph=='reveal')b=resHtml();
+ return `<div class=stage>${head}${b}${S.peek?`<div class=peek>👁 Impostor: ${esc(S.peek.imp)} · words: ${esc(S.peek.a)} / ${esc(S.peek.b)}</div>`:''}</div>`}
+function end(){const o=S.teams.map((t,i)=>({...t,i})).filter(t=>t.p.length).sort((a,b)=>b.s-a.s);
+ return `<div class=stage><h1>🏆 Final <em>Leaderboard</em></h1>${o.map((t,k)=>`<div class=row style="--c:${TC[t.i]};animation-delay:${k*.2}s"><span>${['🥇','🥈','🥉'][k]||k+1}</span><b>${EM[t.i]} ${t.n}</b><span class=pts>${t.s}</span><small>${t.p.map(p=>esc(p.name)).join(', ')}</small></div>`).join('')}</div>`}
+function hostDraw(){
+ if(S.phase=='lobby'){
+  if($('#w')){$('#teams').innerHTML=teamsHtml();$('#wc').textContent=S.wc;return}
+  if(!sentW&&draft){tx({t:'words',text:draft});sentW=1}
+  R.innerHTML=`<div class=wrap><div class=top><div><h1>Vocab <em>Impostor</em></h1><p class=sub>Students open <b>${esc(location.host)}</b> and enter code</p></div><div class=code>${S.code}</div></div>
+  <div id=teams class=lobby>${teamsHtml()}</div>
+  <div class=panel><h3>Vocabulary pairs (<span id=wc>${S.wc}</span> loaded)</h3>
+  <p class=hint>One pair per line: <code>target word | related word | meaning of target | meaning of related</code> — copy from the reading.</p>
+  <textarea id=w rows=7 oninput="draft=this.value" placeholder="target word | related word | meaning of target | meaning of related">${esc(draft)}</textarea>
+  <div class=ctl><button class=btn onclick=saveW()>Save words</button><label>Turns per team <select id=tp>${[1,2,3,4].map(n=>`<option ${n==S.cfg.turns?'selected':''}>${n}</option>`)}</select></label><button class="btn go" onclick=startG()>Start game ▶</button></div></div></div>`;return}
+ const ph=S.phase,timed=['see','clue','disc','vote'].includes(ph);
+ R.innerHTML=`<div class=wrap><div class=top><h2>Vocab <em style="color:var(--gold)">Impostor</em></h2><span class=code style="font-size:1.4rem">${S.code}</span></div>${sb()}${ph=='end'?end():stage()}
+ <div class=ctl>${ph=='reveal'?'<button class="btn go" onclick=tx({t:"next"})>Next turn ▶</button>':''}${timed?'<button class=btn onclick=tx({t:"skip"})>Skip ⏭</button>':''}
+ ${ph!='end'?'<button class=ghost onclick=tx({t:"peek"})>👁 Teacher peek</button><button class=ghost onclick="confirm(\'End game now?\')&&tx({t:\'end\'})">End game</button>':''}
+ ${ph=='end'?'<button class=btn onclick=tx({t:"restart"})>Play again (same room)</button>':''}</div></div>`}
+function saveW(){localStorage.words=draft;tx({t:'words',text:draft});toast('Words saved')}
+function startG(){localStorage.words=draft;tx({t:'words',text:draft});tx({t:'cfg',turns:+$('#tp').value});tx({t:'start'})}
+function playDraw(){let h=`<div class="wrap narrow"><div class=top><b>${esc(S.me.name)}</b><span class="code sm">${S.code}</span></div>`;
+ if(S.phase=='lobby')h+=`<h2>Pick your team</h2><div>${S.teams.map((t,i)=>`<button class="tb ${S.me.team==i?'sel':''}" style="--c:${TC[i]}" onclick=tx({t:"team",i:${i}})>${EM[i]} ${t.n}<small>${t.p.length}/5</small></button>`).join('')}</div><p class=sub>Waiting for the teacher to start…</p>`;
+ else if(S.phase=='end')h+=end();
+ else{if(S.inTeam)h+=card();h+=stage()}
+ R.innerHTML=h+sb()+'</div>'}
+setInterval(()=>{if(!S||!S.total)return;const r=Math.max(0,S.rem-(Date.now()-S.at)),e=$('#tm'),b=$('#bar');if(e)e.textContent=Math.ceil(r/1e3);if(b)b.style.width=r/S.total*100+'%'},200);
+home();try{const h=JSON.parse(localStorage.hello||'null');if(h){setHello(h);conn()}}catch{}
+</script></html>
